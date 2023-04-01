@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 40px;
+}
+body {
+   
+    background: url("../sitesurvey/imagenes/loader.JPG");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    min-height: 100vh;
+    
+}
+
+.container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 100px;
+}
+
+.container .loader {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: solid 7px #064555;
+    border-top: solid 7px #7cd6ec;
+    border-radius: 50%;
+    animation: loader .8s linear infinite;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.container .message {
+    position: absolute;
+    color: #075d72;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: message 1s alternate infinite ease-in-out;
+}
+
+@keyframes message {
+    0% {
+        opacity: .2;
+    }
+
+    100% {
+        opacity: 1 ;
+    }
+}
