@@ -21,7 +21,7 @@
       border: transparent;
       font-family: "Mitr", sans-serif;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 50px;
       padding-top: 5px;
       padding-bottom: 30px;
     }
@@ -117,13 +117,13 @@
     header {
         width: 100%;
         overflow: hidden;
-        background: #004872;
+
         margin-bottom: 20px;
     }
 
 
     header .logo {
-        color: #f2f2f2;
+        color: #298dba;
         font-size: 50px;
         line-height: 60px;
         float: left;
@@ -136,6 +136,8 @@
 
     header nav a {
         display: inline-block;
+        background: #298dba;
+        border-radius: 50px;
         color: #fff;
         text-decoration: none;
         padding: 10px 20px;
@@ -148,7 +150,7 @@
     }
 
     header nav a:hover {
-        background: #f56f3a;
+        background: #20749B;
         border-radius: 50px;
     }
   </style>
@@ -156,7 +158,11 @@
 
 <body>
   <header>
-    <div class="logo">site survey</div>
+    <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=90 HEIGHT=90>
+      <div class="logo">Site Survey</div>
+      <nav>
+          <a name="" id="" class="button-logout" href="../logout.php" role="button">Cerrar Sesión</a>
+      </nav>
 </header>
   <div class="container">
     <form action="../main/add.php" method="post">

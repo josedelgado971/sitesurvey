@@ -14,7 +14,7 @@
          $result = mysqli_fetch_array($query , MYSQLI_ASSOC);
          if(!$result){
              echo "<script>alert('Usuario o Contraseña Inválida')</script>";
-             header("Refresh:0 , url = ./logout.php");
+             header("Refresh:0 , url = ../logout.php");
              exit();
 
          }

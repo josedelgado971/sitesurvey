@@ -24,7 +24,9 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     <style>
     body {
         background-image: url("../vaca_mirando.jpg");
-        
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
         font-family: Arial, Helvetica, sans-serif;
         background-color: white;
     }
@@ -39,106 +41,33 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         background-color: transparent;
         border-top: solid 7px black;
         width: 40%;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
     }
 
-    table th,
-    tr,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px 0px 10px 0px;
+    .botones {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    table {
-        width: 100%;
-    }
-
-    th {
+    button {
+        margin: 10px;
+        padding: 10px 100px;
+        background-color: #4CAF50;
         color: white;
-        background-color: #298dba;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        transition: all 500ms ease;
+        width: 400px;
+        height: 50px;
     }
 
-    tr {
-        background-color: white;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    .timeregis {
-        text-align: center;
-    }
-
-    .modify {
-        text-align: center;
-    }
-
-    .delete {
-        text-align: center;
-    }
-
-    .modify .bfix {
-        border-radius: 15px;
-        background-color: #ffcc33;
-        color: black;
-        text-decoration: none;
-        padding: 4px 20px 4px 20px;
-        transition: 0.5s;
-    }
-
-    .modify .bfix:hover {
-        background-color: #fdb515;
-        color: white;
-    }
-
-    .delete .bdelete {
-        border-radius: 15px;
-        background-color: #e60000;
-        text-decoration: none;
-        color: white;
-        padding: 4px 20px 4px 20px;
-        transition: 0.5s;
-    }
-
-    .delete .bdelete:hover {
-        background-color: #D9ddd4;
-        color: red;
-    }
-
-    .acces {
-        text-align: center;
-    }
-
-    .acces .bacces {
-        border-radius: 15px;
-        background-color: #298dba;
-        text-decoration: none;
-        color: white;
-        padding: 4px 20px 4px 20px;
-        transition: 0.5s;
-    }
-
-    .acces .bacces:hover {
-        background-color: #a5a5a5;
-        color: white;
-    }
-
-
-    .Addlist {
-        margin-right: 100px;
-        padding: 5px 30px 5px 30px;
-        border-radius: 15px;
-        text-decoration: none;
-        color: white;
-        background-color: #298dba;
-        transition: 0.5s;
-    }
-
-    .Addlist:hover {
-        color: black;
-        background-color: #BBFFBB;
+    button:hover {
+        background-color: #3e8e41;
     }
 
     * {
@@ -149,7 +78,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     header {
         width: 100%;
         overflow: hidden;
-        
+        /*position: fixed;*/
         margin-bottom: 20px;
     }
 
@@ -182,7 +111,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     }
 
     header nav a:hover {
-        background: #f56f3a;
+        background: #20749B;
         border-radius: 50px;
     }
     </style>
@@ -191,13 +120,13 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <body>
     <!--<img src="../vaca_mirando.jpg" width="1400" height="700" />-->
     <header>
-        <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=90 HEIGHT=90 >
+        <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=90 HEIGHT=90>
         <div class="logo">Site Survey</div>
         <nav>
-            
+
             <a href="../main/member.html" role="button">Agregar Usuario</a>
             <a href="../logout.php" role="button">Cerrar Sesión</a>
-            
+
         </nav>
     </header>
 
@@ -208,61 +137,23 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             <?php echo $str = strtoupper($username) ?>
         </h2>
     </div>
-    <div class="table-product">
-        <table>
-            <tr>
-                <th scope="col">Orden</th>
-                <th scope="col">ID:Producto</th>
-                <th scope="col">Nombre:Producto</th>
-                <th scope="col">Cantidades</th>
-                <th scope="col">Fecha:Registro</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-            </tr>
-            <tbody>
-                <?php
-                $idpro = 1;
-                while ($row = mysqli_fetch_array($query)) { ?>
-                <tr>
-                    <td scope="row">
-                        <?php echo $idpro ?>
-                    </td>
-                    <td>
-                        <?php echo $row['id'] ?>
-                    </td>
-                    <td>
-                        <?php echo $row['proname'] ?>
-                    </td>
-                    <td>
-                        <?php echo $row['amount'] ?>
-                    </td>
-                    <td class="timeregis">
-                        <?php echo $row['time'] ?>
-                    </td>
-                    <td class="modify"><a name="edit" id="" class="bfix"
-                            href="../fix.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> "
-                            role="button">
-                            Editar
-                        </a></td>
-                    <td class="delete"><a name="id" id="" class="bdelete"
-                            href="../main/delete.php?id=<?php echo $row['id'] ?>" role="button">
-                            Eliminar
-                        </a></td>
-                    <td class="acces"><a name="id" id="" class="bacces" href="../admin/productadmin.php" role="button">
-                            Acceder
-                        </a></td>
-                </tr>
-                <?php
-                    $idpro++;
-                } ?>
-            </tbody>
-        </table>
-        <br>
-        <a class="Addlist" style="float:right" href="../admin/addlist.php" role="button">Agregar Categoria</a>
+    <div class="botones">
+        <a href="../categorias/cerdos.php"><button>Cerdos</button></a>
+        <a href="#"><button>Vacas</button></a>
+        <a href="#"><button>Caballos</button></a>
+        <a href="#"><button>Conejos</button></a>
+        <a href="#"><button>Peces</button></a>
+        <a href="#"><button>Gallinas</button></a>
+        <a href="#"><button>Leche</button></a>
+        <a href="#"><button>Cosechas</button></a>
+        <a href="#"><button>Ordeño de Cerdos</button></a>
+        <a href="#"><button>Medicamentos de Urgencia</button></a>
+    </div>
     </div>
     <div class="footer">
-        <!--<IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=75 HEIGHT=75 >-->
-        
+        <p>
+            <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=75 HEIGHT=75>
+        </p>
     </div>
     <?php
     mysqli_close($conn);

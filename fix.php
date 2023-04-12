@@ -7,7 +7,7 @@ if ($_SESSION['username'] == null) {
     exit();
 }
 $username = $_SESSION['username'];
-$sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
+$sql_fetch_todos = "SELECT * FROM cerdos ORDER BY id ASC";
 $query = mysqli_query($conn, $sql_fetch_todos);
 
 ?>
@@ -26,41 +26,45 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             font-family: Arial, Helvetica, sans-serif;
             background-color: #fd7e1b;
         }
-        .header {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            height: 50px;
-            padding: 5px 13px 11px 0px;
-            width: 100%;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            margin-top: 0px;
-            bottom: 0;
-            background-color: #298dba;
-        }
-        .header p {
-            margin-left: 20px;
-            text-align: left;
-        }
-        .button-logout {
-            position: relative;
-            margin-top: -50px;
-            margin-right: 20px;
-            float: right;
-            text-decoration: none;
-            border: transparent;
-            border-radius: 15px;
-            background-color: #e60000;
-            padding: 10px 10px 10px 10px;
-            color: white;
-            transition: 0.5s;
-        }
-        .button-logout:hover {
-            background-color: #D9ddd4;
-            color: red;
-        }
+    header {
+        width: 100%;
+        overflow: hidden;
+        /*position: fixed;*/
+        margin-bottom: 40px;
+    }
+
+
+    header .logo {
+        color: #298dba;
+        font-size: 50px;
+        line-height: 100px;
+        float: left;
+    }
+
+    header nav {
+        float: right;
+        line-height: 60px;
+    }
+
+    header nav a {
+        display: inline-block;
+        background: #298dba;
+        border-radius: 50px;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        line-height: normal;
+        font-size: 20px;
+        font-weight: bold;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        transition: all 500ms ease;
+    }
+
+    header nav a:hover {
+        background: #20749B;
+        border-radius: 50px;
+    }   
         .container {
             margin: 90px auto;
             margin-bottom: 50px;
@@ -70,37 +74,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             width: 40%;
             padding-bottom: 10px;
         }
-
-        table th,
-        tr,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 10px 0px 10px 0px;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        th {
-            color: white;
-            background-color: #298dba;
-        }
-
-        tr {
-            background-color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .timeregis {
-            text-align: center;
-        }
         .form-group{
             margin-left: 600px;
+            width: 500px;
+            margin: 0 auto;
         }
         [type=text]{
             font-family: "Mitr", sans-serif;
@@ -108,20 +85,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             border: transparent;
             padding: 7px 200px 7px 5px;
         }
-        .return{
-            border-radius: 15px;
-            background-color: #ffcc33;
-            color: black;
-            text-decoration: none;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 0px 50px 100px;
-            font-size: 20px;
-            transition: 0.5s;
-        }
-        .return:hover{
-            background-color: #fdb515;
-            color: white;
-        }
+    
         .modify{
             border-radius: 15px;
             border: transparent;
@@ -141,60 +105,50 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     </style>
 </head>
 <body>
-    <div class="header">
-        <h3>ConfiguroWeb</h3>
-        <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
-    </div>
+    <header>
+        <IMG SRC="./imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=90 HEIGHT=90 >
+        <div class="logo">Site Survey</div>
+        <nav>
+            <a href="categorias/cerdos.php" role="button">Volver</a>
+        </nav>
+    </header>
     <div class="container">
-        <h1>Lista de Productos</h1>
+        <h1>Editar</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
-    <div class="table-product">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                <th scope="col">Orden</th>
-                <th scope="col">ID:Producto</th>
-                <th scope="col">Nombre:Producto</th>
-                <th scope="col">Cantidades</th>
-                <th scope="col">Fecha:Registro</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $idpro = 1;
-                while ($row = mysqli_fetch_array($query)) { ?>
-                    <tr>
-                        <td scope="row"><?php echo $idpro ?></td>
-                        <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['proname'] ?></td>
-                        <td><?php echo $row['amount'] ?></td>
-                        <td class="timeregis"><?php echo $row['time'] ?></td>
-                    </tr>
-                <?php
-                    $idpro++;
-                } ?>
-            </tbody>
-        </table>
-        <br>
-    </div>
+    
     <div class="fixproduct">
         <form method="POST" action="main/fix.php">
             <div class="form-group">
-                <label for="exampleInputEmail1">Nombre del Producto</label>
+                <label for="exampleInputEmail1">Identificacion</label>
                 <br>
-                <input type="text" class="form-control" name="name" value="<?php echo $_GET['message']; ?>" required>
+                <input type="text" class="form-control" name="ident" value="<?php echo $_GET['ident']; ?>" required>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Cantidad</label>
+                <label for="exampleInputEmail1">Ubucacion</label>
                 <br>
-                <input type="text" value="<?php echo $_GET['amount'] ?>" class="form-control" name="value" required>
+                <input type="text" class="form-control" name="alojamiento" value="<?php echo $_GET['ubicacion']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Alimentacion</label>
+                <br>
+                <input type="text" class="form-control" name="alimento" value="<?php echo $_GET['alimento']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Medicinas</label>
+                <br>
+                <input type="text" class="form-control" name="cuidados" value="<?php echo $_GET['medicina']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">observaciones</label>
+                <br>
+                <input type="text" class="form-control" name="otros" value="<?php echo $_GET['otros']; ?>" required>
                 <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
             </div>
             <br>
             <div class="form-button">
-                <button type="submit" class="modify" style="float:right">Editar</button>
-                <a name="" id="" class="return" href="admin/list.php" role="button" style="float:left">Volver</a>
+                <button type="submit" class="modify" style="float:right">Guardar</button>
+                
             </div>
         </form>
     </div>

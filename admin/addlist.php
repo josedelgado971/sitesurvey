@@ -6,7 +6,7 @@ if ($_SESSION['username'] == null) {
     header("Refresh:0 , url=../inicio.html");
 }
 $username = $_SESSION['username'];
-$sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
+$sql_fetch_todos = "SELECT * FROM cerdos ORDER BY id ASC";
 $query = mysqli_query($conn, $sql_fetch_todos);
 
 ?>
@@ -34,13 +34,13 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     header {
         width: 100%;
         overflow: hidden;
-        background: #2b8fc7;
+        /*position: fixed;*/
         margin-bottom: 20px;
     }
 
 
     header .logo {
-        color: #f2f2f2;
+        color: #298dba;
         font-size: 50px;
         line-height: 100px;
         float: left;
@@ -48,11 +48,13 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 
     header nav {
         float: right;
-        line-height: 100px;
+        line-height: 60px;
     }
 
     header nav a {
         display: inline-block;
+        background: #298dba;
+        border-radius: 50px;
         color: #fff;
         text-decoration: none;
         padding: 10px 20px;
@@ -65,51 +67,26 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     }
 
     header nav a:hover {
-        background: #f56f3a;
+        background: #20749B;
         border-radius: 50px;
     }
+
+
 
     .container {
         margin: 90px auto;
         margin-bottom: 50px;
         border-radius: 30px;
         text-align: center;
-        background-color: rgb(39, 197, 0);
+        /*background-color: rgb(39, 197, 0);*/
         width: 40%;
         padding-bottom: 10px;
     }
 
-    table th,
-    tr,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px 0px 10px 0px;
-    }
-
-    table {
-        width: 100%;
-    }
-
-    th {
-        color: white;
-        background-color: #298dba;
-    }
-
-    tr {
-        background-color: white;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    .timeregis {
-        text-align: center;
-    }
-
     .form-group {
         margin-left: 600px;
+        width: 500px;
+        margin: 0 auto;
     }
 
     [type=text],
@@ -120,23 +97,6 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         padding: 7px 200px 7px 5px;
     }
 
-    .return {
-        border-radius: 15px;
-        background-color: #ffcc33;
-        color: black;
-        text-decoration: none;
-        padding: 4px 40px 4px 40px;
-        margin: 0px 0px 50px 100px;
-        font-size: 20px;
-        transition: 0.5s;
-
-    }
-
-    .return:hover {
-        background-color: #fdb515;
-        color: white;
-    }
-
     .modify {
         border-radius: 15px;
         border: transparent;
@@ -145,24 +105,28 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         margin: 0px 50px 50px 100px;
         font-size: 20px;
         border-collapse: collapse;
-        background-color: #00A600;
-        font-family: "Mitr", sans-serif;
+        background: #298dba;
+        /*font-family: "Mitr", sans-serif;*/
         transition: 0.5s;
 
     }
 
     .modify:hover {
-        color: black;
-        background-color: #BBFFBB;
+        background: #20749B;
+    }
+
+    label {
+        font-family: "Mitr", sans-serif;
     }
     </style>
 </head>
 
 <body>
     <header>
+        <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=90 HEIGHT=90>
         <div class="logo">site survey</div>
         <nav>
-            <a href="../logout.php" role="button">Cerrar Sesión</a>
+            <a href="../categorias/cerdos.php" role="button">Volver</a>
         </nav>
     </header>
     <!--<div class="header">
@@ -170,55 +134,41 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>-->
     <div class="container">
-        <h1>Agregar Producto</h1>
-        <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
+        <h1>Agregar</h1>
     </div>
-    <div class="table-product">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Orden</th>
-                    <th scope="col">ID:Producto</th>
-                    <th scope="col">Nombre:Producto</th>
-                    <th scope="col">Cantidades</th>
-                    <th scope="col">Fecha:Registro</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $idpro = 1;
-                while ($row = mysqli_fetch_array($query)) { ?>
-                <tr>
-                    <td scope="row"><?php echo $idpro ?></td>
-                    <td><?php echo $row['id'] ?></td>
-                    <td><?php echo $row['proname'] ?></td>
-                    <td><?php echo $row['amount'] ?></td>
-                    <td class="timeregis"><?php echo $row['time'] ?></td>
-                </tr>
-                <?php
-                    $idpro++;
-                } ?>
-            </tbody>
-        </table>
-        <br>
-        <div class="addproduct">
-            <form method="POST" action="../main/addlist.php">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre de Producto</label>
-                    <br>
-                    <input type="text" class="form-control" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Cantidad</label>
-                    <br>
-                    <input type="number" class="form-control" name="amount" required>
-                </div> <br>
-                <div class="form-button">
-                    <button type="submit" class="modify" style="float:right">Agregar Producto</button>
-                    <a name="" id="" class="return" href="../admin/list.php" role="button" style="float:left">Volver</a>
-                </div>
-            </form>
-        </div>
+    <div class="addproduct">
+        <form method="POST" action="../main/addlist.php">
+        <div class="form-group">
+                <label for="exampleInputEmail1">Identificacion</label>
+                <br>
+                <input type="text" class="form-control" name="ident"  required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Ubucacion</label>
+                <br>
+                <input type="text" class="form-control" name="alojamiento" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Alimentacion</label>
+                <br>
+                <input type="text" class="form-control" name="alimento" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Medicinas</label>
+                <br>
+                <input type="text" class="form-control" name="cuidados" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">observaciones</label>
+                <br>
+                <input type="text" class="form-control" name="otros" required>
+                <!--<input type="hidden" name="id" />-->
+            </div>
+            <br>
+            <div class="form-button">
+                <button type="submit" class="modify" style="float:right">Agregar</button>
+            </div>
+        </form>
     </div>
     <?php
     mysqli_close($conn);
