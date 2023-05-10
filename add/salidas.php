@@ -1,0 +1,152 @@
+<?php
+session_start();
+require_once "../Database/Database.php";
+if ($_SESSION['username'] == null) {
+    echo "<script>alert('Please login.');</script>";
+    header("Refresh:0 , url=../inicio.html");
+}
+$username = $_SESSION['username'];
+$sql_fetch_todos = "SELECT * FROM salida ORDER BY id ASC";
+$query = mysqli_query($conn, $sql_fetch_todos);
+
+?>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Salida Producto</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="faviconconfiguroweb.png">
+    <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
+    <style>
+    body {
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #3aafa9;
+    }
+
+    * {
+        margin: 10px;
+        padding: 0;
+    }
+
+    header {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+
+    header .logo {
+        color: #17252A;
+        font-size: 50px;
+        line-height: 40px;
+        float: left;
+    }
+
+    header nav {
+        float: right;
+        line-height: 60px;
+    }
+
+    header nav a {
+        display: inline-block;
+        background: #17252A;
+        border-radius: 50px;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        line-height: normal;
+        font-size: 20px;
+        font-weight: bold;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        transition: all 500ms ease;
+    }
+
+    header nav a:hover {
+        background: #25414b;
+        border-radius: 50px;
+    }
+
+    .form-group {
+        margin-left: 600px;
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    [type=text],
+    [type=number] {
+        font-family: "Mitr", sans-serif;
+        border-radius: 15px;
+        border: transparent;
+        padding: 7px 200px 7px 5px;
+    }
+
+    .modify {
+        display: inline-block;
+        background: #17252A;
+        border-radius: 50px;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        line-height: normal;
+        font-size: 20px;
+        font-weight: bold;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        transition: all 500ms ease;
+
+    }
+
+    .modify:hover {
+        background: #25414b;
+        
+    }
+
+    label {
+        font-family: "Mitr", sans-serif;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Salida Producto</div>
+        <nav>
+            <a href="../categorias/productos.php" role="button">Volver</a>
+        </nav>
+    </header>
+    <div class="addproduct" style="text-align: center;">
+        <form method="POST" action="../add/add_salida.php">
+        <div class="form-group">
+                <label for="exampleInputEmail1">Producto</label>
+                <br>
+                <input type="text" class="form-control" name="proname"  required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Cantidad</label>
+                <br>
+                <input type="text" class="form-control" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Motivo</label>
+                <br>
+                <input type="text" class="form-control" name="motivo" required>
+            </div>
+            <br>
+            <div class="form-button" style="text-align: center;">
+                <button type="submit" class="modify">Agregar</button>
+            </div>
+        </form>
+    </div>
+    <?php
+    mysqli_close($conn);
+    ?>
+</body>
+
+</html>

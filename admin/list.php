@@ -23,8 +23,14 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <style>
     body {
+<<<<<<< Updated upstream
         background-image: url("../vaca_mirando.jpg");
         
+=======
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+>>>>>>> Stashed changes
         font-family: Arial, Helvetica, sans-serif;
         background-color: white;
     }
@@ -38,26 +44,44 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         text-align: center;
         background-color: transparent;
         border-top: solid 7px black;
+<<<<<<< Updated upstream
         width: 40%;
         padding-bottom: 10px;
+=======
+        padding-bottom: 20px;
+>>>>>>> Stashed changes
     }
 
-    table th,
-    tr,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px 0px 10px 0px;
+    .botones {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
+<<<<<<< Updated upstream
     table {
         width: 100%;
     }
 
     th {
+=======
+    button {
+        margin: 10px;
+        padding: 10px 100px;
+        background-color: #17252A;
+>>>>>>> Stashed changes
         color: white;
-        background-color: #298dba;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        transition: all 500ms ease;
+        width: 400px;
+        height: 50px;
     }
+<<<<<<< Updated upstream
 
     tr {
         background-color: white;
@@ -123,6 +147,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     .acces .bacces:hover {
         background-color: #a5a5a5;
         color: white;
+=======
+    button:hover{
+        background: #25414b;
+>>>>>>> Stashed changes
     }
 
 
@@ -139,6 +167,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     .Addlist:hover {
         color: black;
         background-color: #BBFFBB;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     }
 
     * {
@@ -149,7 +181,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     header {
         width: 100%;
         overflow: hidden;
-        
+        /*position: fixed;*/
         margin-bottom: 20px;
     }
 
@@ -182,7 +214,11 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     }
 
     header nav a:hover {
+<<<<<<< Updated upstream
         background: #f56f3a;
+=======
+        background: #25414b;
+>>>>>>> Stashed changes
         border-radius: 50px;
     }
     </style>
@@ -191,13 +227,23 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <body>
     <!--<img src="../vaca_mirando.jpg" width="1400" height="700" />-->
     <header>
+<<<<<<< Updated upstream
         <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=90 HEIGHT=90 >
         <div class="logo">Site Survey</div>
+=======
+        <!--<IMG SRC="../imagenes/sitesurvey.png" ALIGN=center WIDTH=90 HEIGHT=90>-->
+        <div class="logo">
+            <h1>Has accedido como
+                <br>
+                <?php echo $str = strtoupper($username) ?>
+            </h1>
+        </div>
+>>>>>>> Stashed changes
         <nav>
-            
+
             <a href="../main/member.html" role="button">Agregar Usuario</a>
             <a href="../logout.php" role="button">Cerrar Sesión</a>
-            
+
         </nav>
     </header>
 
@@ -208,6 +254,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             <?php echo $str = strtoupper($username) ?>
         </h2>
     </div>
+<<<<<<< Updated upstream
     <div class="table-product">
         <table>
             <tr>
@@ -259,10 +306,24 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         </table>
         <br>
         <a class="Addlist" style="float:right" href="../admin/addlist.php" role="button">Agregar Categoria</a>
+=======
+    <div class="botones">
+        <a href="../categorias/cerdos.php"><button>Cerdos</button></a>
+        <a href="../categorias/vacas.php"><button>Vacas</button></a>
+        <a href="../categorias/caballos.php"><button>Caballos</button></a>
+        <a href="../categorias/conejos.php"><button>Conejos</button></a>
+        <a href="../categorias/peces.php"><button>Peces</button></a>
+        <a href="../categorias/pollos.php"><button>Pollos</button></a>
+        <a href="../categorias/medicina.php"><button>Medicamentos de Urgencia</button></a>
+        <a href="../categorias/productos.php"><button>productos</button></a>
+    </div>
+
+>>>>>>> Stashed changes
     </div>
     <div class="footer">
-        <!--<IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=75 HEIGHT=75 >-->
-        
+        <p>
+            <IMG SRC="../imagenes/sitesurvey.png" ALIGN=LEFT WIDTH=75 HEIGHT=75>
+        </p>
     </div>
     <?php
     mysqli_close($conn);

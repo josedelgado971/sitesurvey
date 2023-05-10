@@ -21,7 +21,7 @@
          else{
              session_start();
              $_SESSION['username'] = $result['username'];
-             header("Location: ../usuario/listuser.php");
+             header("Location: ../usuario/user.php");
              session_write_close();
          }
     }
